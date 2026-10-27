@@ -10,7 +10,6 @@ Si te son útiles, puedes invitarme a un café:
 | --- | --- | --- |
 | [GST-LoS-Generator](https://github.com/nsuarez75/GST-LoS-Generator) | A partir de la LoS (Excel de señales I4.0), genera el FB `User_LoS_Device_In_FB` (XML de Openness) y un UDT `GSDML_DeviceNN` por device. | [Última versión](https://github.com/nsuarez75/GST-LoS-Generator/releases/latest) |
 | [GST-FIT-Generator](https://github.com/nsuarez75/GST-FIT-Generator) | Se definen en la app las features de cada referencia y genera la plantilla FIT, el Excel FIT para la plataforma I4 y el código de PLC de trazabilidad (`User_TableInfo_DB`, `User_Config_Reference_FB`, `CheckTechTemplate_DB`). | [Última versión](https://github.com/nsuarez75/GST-FIT-Generator/releases/latest) |
-| [ImportExportTIA](https://github.com/nsuarez75/ImportExportTIA) | Exporta bloques de un proyecto de TIA Portal V18/V19 a XML y los importa de vuelta, en el mismo proyecto o en otro, con TIA Openness. | [Última versión](https://github.com/nsuarez75/ImportExportTIA/releases/latest) |
 | [HerramientasSicar](https://github.com/nsuarez75/HerramientasSicar) | Tareas sobre un proyecto SICAR@GST V4 abierto en TIA: DiagExpected, numerar mensajes, comentar pasos de secuencia en tres idiomas, renumerar arrays y generar la configuración del HMI. | [Última versión](https://github.com/nsuarez75/HerramientasSicar/releases/latest) |
 
 ## Cómo encajan
@@ -26,7 +25,6 @@ Si te son útiles, puedes invitarme a un café:
 | --- | --- | --- |
 | GST-LoS-Generator | Windows o Linux, 64 bits | Nada: ejecutable único. |
 | GST-FIT-Generator | Windows o Linux, 64 bits | Nada: ejecutable único. |
-| ImportExportTIA | Windows | .NET Framework 4.8, TIA Portal V18 o V19 con Openness y el usuario en el grupo «Siemens TIA Openness». |
 | HerramientasSicar | Windows | .NET Framework 4.8, TIA Portal con Openness y el usuario en el grupo «Siemens TIA Openness». |
 
 Las aplicaciones con la interfaz nueva (GST-LoS-Generator, GST-FIT-Generator e ImportExportTIA) comparten aspecto, están en castellano e inglés y avisan al arrancar si hay una versión nueva.

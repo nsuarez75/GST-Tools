@@ -1,3 +1,4 @@
 # Pendientes
 
-- [ ] GST-FIT-Generator es privado y las otras tres son públicas: quien no tenga acceso no podrá abrir su enlace. Decidir si se hace público (o se deja así a propósito).
+- [x] GST-FIT-Generator ya es público (2026-10-27), como las otras tres aplicaciones.
+- [ ] Este índice sigue siendo privado: hacerlo público si se va a pasar el enlace a otras personas.

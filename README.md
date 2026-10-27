@@ -2,6 +2,10 @@
 
 Índice de las aplicaciones para proyectos de líneas de GESTAMP con el estándar SICAR@GST y TIA Portal. Cada aplicación tiene su propio repositorio, con su código, su documentación y sus versiones; aquí solo se explica para qué sirve cada una y dónde descargarla.
 
+Si te son útiles, puedes invitarme a un café:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/nsuarez75)
+
 | Aplicación | Para qué sirve | Descargar |
 | --- | --- | --- |
 | [GST-LoS-Generator](https://github.com/nsuarez75/GST-LoS-Generator) | A partir de la LoS (Excel de señales I4.0), genera el FB `User_LoS_Device_In_FB` (XML de Openness) y un UDT `GSDML_DeviceNN` por device. | [Última versión](https://github.com/nsuarez75/GST-LoS-Generator/releases/latest) |

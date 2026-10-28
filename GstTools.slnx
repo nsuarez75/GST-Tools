@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GstTools/GstTools.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GstTools.Tests/GstTools.Tests.csproj" />
+  </Folder>
+</Solution>

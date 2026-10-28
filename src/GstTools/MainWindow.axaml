@@ -49,11 +49,15 @@
                                     </Border>
                                 </StackPanel>
                                 <TextBlock Text="{Binding Descripcion}" Classes="muted" FontSize="12" />
+                                <Border Classes="pill warn" IsVisible="{Binding HayNueva}" Margin="0,3,0,0">
+                                    <TextBlock Text="{Binding AvisoNueva}" />
+                                </Border>
                             </StackPanel>
-                            <!-- Si la aplicación no está en la carpeta, Abrir queda desactivado y se ofrece descargarla -->
+                            <!-- Si la aplicación no está en la carpeta, Abrir queda desactivado y se ofrece descargarla;
+                                 también se ofrece si hay una versión nueva -->
                             <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
-                                <Button Classes="ghost" Click="Descargar" IsVisible="{Binding NoEncontrado}"
-                                        ToolTip.Tip="{l:T 'Descargar la última versión'}">
+                                <Button Classes="ghost" Click="Descargar" IsVisible="{Binding SePuedeDescargar}"
+                                        ToolTip.Tip="{Binding TextoDescargar}">
                                     <c:Icon Kind="download" Width="17" Height="17" />
                                 </Button>
                                 <Button Classes="accent" Click="Abrir" IsEnabled="{Binding Encontrado}" ToolTip.Tip="{Binding Ruta}">

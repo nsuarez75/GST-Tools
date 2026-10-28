@@ -4,10 +4,11 @@ using Avalonia.Platform;
 
 namespace GstTools;
 
-public sealed class Tarjeta(Programa programa, Ejecutable? ejecutable)
+public sealed class Tarjeta(Programa programa, Ejecutable? ejecutable, Release? ultima)
 {
     public Programa Programa { get; } = programa;
     public Ejecutable? Ejecutable { get; } = ejecutable;
+    public Release? Ultima { get; } = ultima;
 
     public string Nombre => Programa.Nombre;
     public string Descripcion => L.T(Programa.Descripcion);
@@ -24,4 +25,12 @@ public sealed class Tarjeta(Programa programa, Ejecutable? ejecutable)
     };
 
     public string? Ruta => Ejecutable?.Ruta;
+
+    public bool HayNueva => Programas.HayNueva(Ejecutable, Ultima);
+    public string AvisoNueva => Ultima is null ? "" : L.T("Hay una versión nueva: {0}", Ultima.Tag);
+
+    // Descargar se ofrece si falta la aplicación o si hay una versión nueva.
+    public bool SePuedeDescargar => NoEncontrado || HayNueva;
+    public string TextoDescargar => Ultima is null ? L.T("Descargar la última versión") : L.T("Descargar la versión {0}", Ultima.Tag);
+    public string UrlDescarga => Ultima?.Url ?? Programa.Descargas;
 }

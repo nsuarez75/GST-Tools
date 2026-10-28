@@ -9,17 +9,36 @@ public partial class MainWindow : Window
     // Las aplicaciones se buscan junto al lanzador.
     private static readonly string Carpeta = Path.GetDirectoryName(Environment.ProcessPath) ?? AppContext.BaseDirectory;
 
+    // Última release de cada aplicación en GitHub; se consulta una vez al abrir.
+    private readonly Dictionary<Programa, Release?> _ultimas = [];
+
     public MainWindow()
     {
         InitializeComponent();
         Buscar();
+        Opened += async (_, _) => await BuscarVersionesNuevas();
         Aviso.Text = L.T("Se buscan en la carpeta del lanzador: {0}", Carpeta);
         // Al volver a la ventana se busca otra vez: así se ve un exe que se acaba de copiar o actualizar.
         Activated += (_, _) => Buscar();
     }
 
     private void Buscar() =>
-        Lista.ItemsSource = Programas.Todos.Select(p => new Tarjeta(p, Programas.Buscar(p, Carpeta))).ToList();
+        Lista.ItemsSource = Programas.Todos
+            .Select(p => new Tarjeta(p, Programas.Buscar(p, Carpeta), _ultimas.GetValueOrDefault(p)))
+            .ToList();
+
+    private async Task BuscarVersionesNuevas()
+    {
+        using var http = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+        // GitHub rechaza las peticiones sin User-Agent.
+        http.DefaultRequestHeaders.UserAgent.ParseAdd("GstTools");
+        var ultimas = await Task.WhenAll(Programas.Todos.Select(p => Programas.UltimaRelease(http, p)));
+        for (var i = 0; i < ultimas.Length; i++)
+        {
+            _ultimas[Programas.Todos[i]] = ultimas[i];
+        }
+        Buscar();
+    }
 
     private void Abrir(object? sender, RoutedEventArgs e)
     {
@@ -42,7 +61,7 @@ public partial class MainWindow : Window
     {
         if ((sender as Control)?.DataContext is Tarjeta tarjeta)
         {
-            Lanzar(tarjeta.Programa.Descargas);
+            Lanzar(tarjeta.UrlDescarga);
         }
     }
 

@@ -14,7 +14,7 @@ Si te son útiles, puedes invitarme a un café:
 
 ## Lanzador
 
-`GstTools.exe` es una ventana con un botón por aplicación. Se deja en la misma carpeta que los exe de las aplicaciones (con el nombre con el que se descargan) y, al abrirlo, muestra cuáles hay y qué versión es cada una. Si hay varias versiones de una aplicación, abre la más nueva. Si falta alguna, su botón **Abrir** queda desactivado y al lado hay un enlace para descargarla. No lleva las aplicaciones dentro: cada una se actualiza por su cuenta dejando el exe nuevo en la carpeta.
+`GstTools.exe` es una ventana con un botón por aplicación. Se deja en la misma carpeta que los exe de las aplicaciones (con el nombre con el que se descargan) y, al abrirlo, muestra cuáles hay y qué versión es cada una. Si hay varias versiones de una aplicación, abre la más nueva. Si falta alguna, su botón **Abrir** queda desactivado y al lado hay un enlace para descargarla. Al abrirse también mira en GitHub la última versión de cada una y avisa si hay una más nueva que la de la carpeta, con el enlace para descargarla. No lleva las aplicaciones dentro: cada una se actualiza por su cuenta dejando el exe nuevo en la carpeta.
 
 ## Cómo encajan
 

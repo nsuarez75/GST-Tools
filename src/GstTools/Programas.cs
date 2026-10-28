@@ -1,5 +1,6 @@
 // Las aplicaciones que abre el lanzador y cómo se encuentra el ejecutable de cada una en la carpeta.
 using System.Diagnostics;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace GstTools;
@@ -7,9 +8,14 @@ namespace GstTools;
 public sealed record Programa(string Nombre, string Descripcion, string Prefijo, string Icono, string Repositorio)
 {
     public string Descargas => Repositorio + "/releases/latest";
+
+    // API de GitHub de la última release: owner/repo sacados de la URL del repositorio.
+    public string ApiUltimaRelease => "https://api.github.com/repos/" + Repositorio["https://github.com/".Length..] + "/releases/latest";
 }
 
 public sealed record Ejecutable(string Ruta, Version? Version);
+
+public sealed record Release(string Tag, Version Version, string Url);
 
 public static partial class Programas
 {
@@ -44,6 +50,43 @@ public static partial class Programas
             .ThenByDescending(e => File.GetLastWriteTimeUtc(e.Ruta))
             .FirstOrDefault();
     }
+
+    /// <summary>Última release publicada en GitHub, o null si no se puede saber (sin red, sin releases...).</summary>
+    public static async Task<Release?> UltimaRelease(HttpClient http, Programa programa, CancellationToken cancel = default)
+    {
+        try
+        {
+            using var respuesta = await http.GetAsync(programa.ApiUltimaRelease, cancel);
+            return respuesta.IsSuccessStatusCode ? LeerRelease(await respuesta.Content.ReadAsStringAsync(cancel)) : null;
+        }
+        catch (Exception e) when (e is HttpRequestException or TaskCanceledException)
+        {
+            return null;
+        }
+    }
+
+    internal static Release? LeerRelease(string json)
+    {
+        try
+        {
+            using var doc = JsonDocument.Parse(json);
+            var raiz = doc.RootElement;
+            var tag = raiz.TryGetProperty("tag_name", out var t) ? t.GetString() : null;
+            var url = raiz.TryGetProperty("html_url", out var u) ? u.GetString() : null;
+            return tag is not null && url is not null && VersionDelTag(tag) is { } version ? new Release(tag, version, url) : null;
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
+
+    internal static Version? VersionDelTag(string tag) =>
+        Version.TryParse(tag.TrimStart('v', 'V'), out var v) ? Normalizar(v) : null;
+
+    /// <summary>Hay una versión publicada más nueva que la de la carpeta. Si no se sabe la de la carpeta, no se avisa.</summary>
+    public static bool HayNueva(Ejecutable? ejecutable, Release? ultima) =>
+        ejecutable?.Version is { } actual && ultima is not null && ultima.Version > actual;
 
     // «GstLosGenerator.exe» o «GstLosGenerator-…exe», pero no otra aplicación que empiece igual.
     internal static bool EsDelPrograma(string archivo, string prefijo)

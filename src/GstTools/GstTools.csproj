@@ -11,7 +11,11 @@
     <ApplicationIcon>Assets\gst-tools.ico</ApplicationIcon>
     <Version>0.1.0</Version>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <!-- Un solo exe que solo lanza las otras aplicaciones: se recorta lo que no usa y se comprime -->
+  </PropertyGroup>
+
+  <!-- Al publicar (con -r): un solo exe que solo lanza las otras aplicaciones, recortado y comprimido.
+       Solo entonces: un proyecto independiente no puede referenciarlo el de tests. -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <PublishTrimmed>true</PublishTrimmed>

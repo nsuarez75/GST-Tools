@@ -31,6 +31,8 @@ public static class L
             "Tasks on a SICAR@GST project open in TIA Portal: import and export, messages, comments, HMI…",
         ["Abrir"] = "Open",
         ["Descargar la última versión"] = "Download the latest version",
+        ["Descargar la versión {0}"] = "Download version {0}",
+        ["Hay una versión nueva: {0}"] = "New version available: {0}",
         ["versión {0}"] = "version {0}",
         ["No está en esta carpeta"] = "Not in this folder",
         ["Se buscan en la carpeta del lanzador: {0}"] = "Looked for in the launcher folder: {0}",

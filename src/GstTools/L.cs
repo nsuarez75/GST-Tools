@@ -38,6 +38,9 @@ public static class L
         ["Se buscan en la carpeta del lanzador: {0}"] = "Looked for in the launcher folder: {0}",
         ["Abrir la carpeta"] = "Open the folder",
         ["Abriendo {0}…"] = "Opening {0}…",
+        ["Acerca de"] = "About",
+        ["Aceptar"] = "OK",
+        ["{0}, versión {1}.\nCreado por Ignacio Suarez (Alomatek)."] = "{0}, version {1}.\nMade by Ignacio Suarez (Alomatek).",
         ["No se pudo abrir {0}: {1}"] = "Could not open {0}: {1}",
     };
 }

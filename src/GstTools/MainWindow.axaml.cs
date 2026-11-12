@@ -65,6 +65,8 @@ public partial class MainWindow : Window
         }
     }
 
+    private async void ShowAbout(object? sender, RoutedEventArgs e) => await new AboutWindow().ShowDialog(this);
+
     private void OpenFolder(object? sender, RoutedEventArgs e) => Launch(Folder);
 
     private void Launch(string target)

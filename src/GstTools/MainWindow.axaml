@@ -12,13 +12,18 @@
     <DockPanel>
         <!-- ░░ Marca ░░ -->
         <Border DockPanel.Dock="Top" Classes="bar" BorderThickness="0,0,0,1" Padding="16,12">
-            <StackPanel Orientation="Horizontal" Spacing="10">
-                <Image Source="/Assets/gst-tools.png" Width="32" Height="32" />
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="GST Tools" FontWeight="Bold" FontSize="14" />
-                    <TextBlock Text="{l:T 'Lanzador de las aplicaciones para proyectos SICAR@GST'}" Classes="label" FontSize="11.5" />
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <Image Source="/Assets/gst-tools.png" Width="32" Height="32" />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="GST Tools" FontWeight="Bold" FontSize="14" />
+                        <TextBlock Text="{l:T 'Lanzador de las aplicaciones para proyectos SICAR@GST'}" Classes="label" FontSize="11.5" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+                <Button Grid.Column="1" Classes="ghost" Click="ShowAbout" ToolTip.Tip="{l:T 'Acerca de'}" VerticalAlignment="Center">
+                    <c:Icon Kind="info" Width="17" Height="17" />
+                </Button>
+            </Grid>
         </Border>
 
         <!-- ░░ Carpeta donde se buscan y último aviso ░░ -->

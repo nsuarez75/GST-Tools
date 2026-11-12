@@ -23,44 +23,44 @@
 
         <!-- ░░ Carpeta donde se buscan y último aviso ░░ -->
         <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,Auto" ColumnSpacing="8" Margin="16,0,16,14">
-            <TextBlock x:Name="Aviso" Classes="muted" FontSize="12" VerticalAlignment="Center" />
-            <Button Grid.Column="1" Classes="ghost" Click="AbrirCarpeta" ToolTip.Tip="{l:T 'Abrir la carpeta'}">
+            <TextBlock x:Name="Notice" Classes="muted" FontSize="12" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Classes="ghost" Click="OpenFolder" ToolTip.Tip="{l:T 'Abrir la carpeta'}">
                 <c:Icon Kind="folder" Width="17" Height="17" />
             </Button>
         </Grid>
 
         <!-- ░░ Una tarjeta por aplicación ░░ -->
-        <ItemsControl x:Name="Lista" Margin="16,14,16,10">
+        <ItemsControl x:Name="AppList" Margin="16,14,16,10">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Spacing="10" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-                <DataTemplate x:DataType="l:Tarjeta">
+                <DataTemplate x:DataType="l:ToolCard">
                     <Border Classes="card">
                         <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Image Source="{Binding Icono}" Width="40" Height="40" VerticalAlignment="Center" />
+                            <Image Source="{Binding Icon}" Width="40" Height="40" VerticalAlignment="Center" />
                             <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" Spacing="8">
-                                    <TextBlock Text="{Binding Nombre}" Classes="h2" />
-                                    <Border Classes="pill" Classes.accent="{Binding Encontrado}">
-                                        <TextBlock Text="{Binding Estado}" />
+                                    <TextBlock Text="{Binding Name}" Classes="h2" />
+                                    <Border Classes="pill" Classes.accent="{Binding Found}">
+                                        <TextBlock Text="{Binding Status}" />
                                     </Border>
                                 </StackPanel>
-                                <TextBlock Text="{Binding Descripcion}" Classes="muted" FontSize="12" />
-                                <Border Classes="pill warn" IsVisible="{Binding HayNueva}" Margin="0,3,0,0">
-                                    <TextBlock Text="{Binding AvisoNueva}" />
+                                <TextBlock Text="{Binding Description}" Classes="muted" FontSize="12" />
+                                <Border Classes="pill warn" IsVisible="{Binding HasNewer}" Margin="0,3,0,0">
+                                    <TextBlock Text="{Binding UpdateNotice}" />
                                 </Border>
                             </StackPanel>
                             <!-- Si la aplicación no está en la carpeta, Abrir queda desactivado y se ofrece descargarla;
                                  también se ofrece si hay una versión nueva -->
                             <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
-                                <Button Classes="ghost" Click="Descargar" IsVisible="{Binding SePuedeDescargar}"
-                                        ToolTip.Tip="{Binding TextoDescargar}">
+                                <Button Classes="ghost" Click="Download" IsVisible="{Binding CanDownload}"
+                                        ToolTip.Tip="{Binding DownloadText}">
                                     <c:Icon Kind="download" Width="17" Height="17" />
                                 </Button>
-                                <Button Classes="accent" Click="Abrir" IsEnabled="{Binding Encontrado}" ToolTip.Tip="{Binding Ruta}">
+                                <Button Classes="accent" Click="OpenApp" IsEnabled="{Binding Found}" ToolTip.Tip="{Binding FilePath}">
                                     <StackPanel Orientation="Horizontal" Spacing="6">
                                         <c:Icon Kind="play" />
                                         <TextBlock Text="{l:T 'Abrir'}" />

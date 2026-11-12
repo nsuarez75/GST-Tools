@@ -36,6 +36,6 @@ Las aplicaciones están en castellano e inglés y avisan al arrancar si hay una 
 
 ## Mantener este índice
 
-Los enlaces de descarga apuntan siempre a la última versión de cada aplicación, así que no hay que tocarlos al publicar una release. Solo hay que actualizar este README al añadir o retirar una aplicación, o si cambia para qué sirve; en ese caso también hay que añadirla o quitarla en `src/GstTools/Programas.cs`, con su traducción en `L.cs`. `./checks.sh` compila el lanzador, pasa sus tests y comprueba que todos los repositorios enlazados existen.
+Los enlaces de descarga apuntan siempre a la última versión de cada aplicación, así que no hay que tocarlos al publicar una release. Solo hay que actualizar este README al añadir o retirar una aplicación, o si cambia para qué sirve; en ese caso también hay que añadirla o quitarla en `src/GstTools/ToolApps.cs`, con su traducción en `L.cs`. `./checks.sh` compila el lanzador, pasa sus tests y comprueba que todos los repositorios enlazados existen.
 
 El lanzador se publica con `dotnet publish src/GstTools/GstTools.csproj -c Release -r win-x64 -p:DebugType=none` (un solo exe de unos 22 MB); su versión está en `GstTools.csproj`.
